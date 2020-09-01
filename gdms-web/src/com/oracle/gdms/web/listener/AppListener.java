@@ -30,7 +30,10 @@ public class AppListener implements ServletContextListener {
     	PropertyConfigurator.configure(url);
     	
     	// 下面把应用程序需要的一些参数，全放进全局环境中http://localhost:8080/gdms-web/
-    	String href = "http://xbmde801093.java.cdnjsp.org/" + rb.getString("context") + "/";
+    	//String href = "http://xbmde801093.java.cdnjsp.org/" + rb.getString("context") + "/";
+    	String href = "http://" + rb.getString("host") + ":"
+				+ rb.getString("port") + "/" + rb.getString("context") + "/";
+
     	
     	arg0.getServletContext().setAttribute("href", href);  // 在全局内存环境中绑定一个对象
     }

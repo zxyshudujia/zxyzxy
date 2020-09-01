@@ -82,8 +82,8 @@ public class GoodsServiceImpl extends BaseService implements GoodsService {
 	}
 
 	private ResponseEntity push(String jsonstr) {
-//		String url = AppListener.getString("pushurl_self");
-		String url = "http://localhost:8080/gdms-web/rest/huazhao/push/goods/one";
+		String url = AppListener.getString("pushurl_self"); //从配置文件中读取"pushurl_self"地址
+//		String url = "http://localhost:8080/gdms-web/rest/huazhao/push/goods/one";
 		
 		HttpPost post = new HttpPost(url);
 		StringEntity entity = new StringEntity(jsonstr, "UTF-8");

@@ -121,10 +121,20 @@ public class TestRest {
 		System.out.println("name=" + goods.getName());
 		System.out.println("area=" + goods.getArea());
 		ResponseEntity rs = new ResponseEntity();
-		rs.setCode(0);
-		rs.setMessage("推送成功");
+		
+		//将接收到的商品数据，写入服务端的数据表
+		GoodsService service = (GoodsService) Factory.getInstacance().getObject("goods.service.impl");
+		int count = service.add(goods);
+		
+		rs.setCode(count > 0 ? 0 : 1099);
+		rs.setMessage(count > 0 ? "推送成功" : "推送失败：写入商品数据失败。");
 		rs.setData(null);
 		
 		return rs;
 	}
+	
+	/**
+	 * 
+	 * http://localhost:8080/gdms-web/rest/huazhao/push/goods/one
+	 */
 }
